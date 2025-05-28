@@ -25,7 +25,9 @@ fun AppNavigation(
         modifier = modifier
     ) {
         composable<NavGraph.HomeScreen> {
-            HomeScreen()
+            HomeScreen(onNavigateToEditorScreen = {
+                navController.navigate(NavGraph.EditorScreen(it))
+            })
         }
 
         composable<NavGraph.EditorScreen>(
