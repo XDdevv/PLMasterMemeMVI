@@ -35,7 +35,9 @@ import zed.rainxch.plmastermememvi.core.presentation.desingsystem.theme.PLMaster
 import zed.rainxch.plmastermememvi.core.presentation.desingsystem.theme.fabGradient
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+) {
     Scaffold(
         modifier = modifier,
         floatingActionButton = {
