@@ -1,5 +1,6 @@
 package zed.rainxch.plmastermememvi.editor.presentation
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -8,8 +9,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
@@ -19,30 +21,42 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.Matrix
+import androidx.compose.ui.graphics.drawscope.scale
+import androidx.compose.ui.graphics.drawscope.withTransform
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import zed.rainxch.plmastermememvi.R
+import zed.rainxch.plmastermememvi.core.domain.model.Template
 import zed.rainxch.plmastermememvi.core.presentation.desingsystem.theme.PLMasterMemeMVITheme
 
 @Composable
 fun EditorScreen(
     modifier: Modifier,
     onBack: () -> Unit,
-
-    ) {
+    template: Template
+) {
     MaterialTheme.colorScheme
 
-    Column(
-        modifier = modifier.fillMaxSize()
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.surfaceContainerLowest)
     ) {
         // Title
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.surfaceContainerLow),
+                .background(MaterialTheme.colorScheme.surfaceContainerLow)
+                .align(Alignment.TopCenter),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -67,7 +81,39 @@ fun EditorScreen(
         }
 
         // Image
+        val imageBitmap = ImageBitmap.imageResource(template.imageRes)
+        Canvas(
+            modifier = Modifier
+                .size(380.dp)
+                .align(Alignment.Center)
+                .clip(RoundedCornerShape(4.dp))
+                .clipToBounds()
+        ) {
+            val (imageWidth, imageHeight) = imageBitmap.width to imageBitmap.height
+            val (width, height) = size.width to size.height
+
+            val deltaX = (width - imageWidth) / 2
+            val deltaY = (height - imageHeight) / 2
+
+            val scale = maxOf(
+                height / imageHeight,
+                width / imageWidth
+            )
+            scale(
+                scale = scale
+            ) {
+                drawImage(
+                    image = imageBitmap,
+                    topLeft = Offset(
+                        x = deltaX,
+                        y = deltaY,
+                    )
+                )
+            }
+        }
+
         // Bar with button (add; save)
+
         // Size bar
     }
 }
@@ -79,7 +125,8 @@ fun EditScreenPrev(
     PLMasterMemeMVITheme {
         EditorScreen(
             onBack = {},
-            modifier = Modifier
+            modifier = Modifier,
+            template = Template(R.drawable.temp_1)
         )
     }
 }

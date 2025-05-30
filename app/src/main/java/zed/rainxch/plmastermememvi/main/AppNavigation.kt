@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import kotlinx.serialization.serializer
 import zed.rainxch.plmastermememvi.core.domain.model.Template
 import zed.rainxch.plmastermememvi.core.presentation.navigation.NavGraph
@@ -34,10 +35,12 @@ fun AppNavigation(
             typeMap = mapOf(
                 typeOf<Template>() to SerializableNavType.create(serializer<Template>())
             )
-        ) {
+        ) { backStackEntry ->
+            val args = backStackEntry.toRoute<NavGraph.EditorScreen>()
             EditorScreen(
                 onBack = { navController.popBackStack() },
-                modifier = Modifier
+                modifier = Modifier,
+                template = args.template
             )
         }
     }
