@@ -1,6 +1,7 @@
 package zed.rainxch.plmastermememvi.editor.presentation
 
 import zed.rainxch.plmastermememvi.editor.presentation.model.CurrentAction
+import zed.rainxch.plmastermememvi.editor.presentation.model.EditorActionBar
 import zed.rainxch.plmastermememvi.editor.presentation.model.Label
 
 data class EditorUiState(
@@ -9,5 +10,6 @@ data class EditorUiState(
     val currentAction: CurrentAction = CurrentAction.SAVE_TOOLBAR,
     val isGoingBack: Boolean = false,
     val currentSelectedLabel: Label? = null,
-    val lastSize: Float = currentSelectedLabel?.size ?: 24f
+    val lastSize: Float = currentSelectedLabel?.size ?: 24f,
+    val visibleToolbar: EditorActionBar = EditorActionBar.SAVE_TOOLBAR
 )
