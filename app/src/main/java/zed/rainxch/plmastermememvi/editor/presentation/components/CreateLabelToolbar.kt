@@ -14,9 +14,9 @@ import androidx.compose.ui.unit.dp
 import zed.rainxch.plmastermememvi.R
 
 @Composable
-fun EditorToolbar(
+fun CreateLabelToolbar(
     onSaveClick: () -> Unit,
-    onAddTextClick: () -> Unit,
+    onAddLabelClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -25,7 +25,7 @@ fun EditorToolbar(
         horizontalArrangement = Arrangement.spacedBy(32.dp, Alignment.End)
     ) {
         OutlinedButton(
-            onClick = onAddTextClick,
+            onClick = onAddLabelClick,
             shape = RoundedCornerShape(8.dp)
         ) {
             Text(text = stringResource(R.string.add_text))

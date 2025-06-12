@@ -10,4 +10,10 @@
     <string name="template_image">Template image</string>
     <string name="save_meme">Save meme</string>
     <string name="add_text">Add text</string>
+    <string name="leave_editor">Leave editor?</string>
+    <string name="you_will_lose_your_precious_meme_if_you_re_fine_with_that_press_leave">You will lose your precious meme. If you\'re fine with that, press ‘Leave’.</string>
+    <string name="cancel">Cancel</string>
+    <string name="leave">Leave</string>
+    <string name="text">Text</string>
+    <string name="ok">Ok</string>
 </resources>

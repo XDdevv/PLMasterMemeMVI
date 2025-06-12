@@ -1,6 +1,6 @@
 package zed.rainxch.plmastermememvi.editor.presentation.model
 
 enum class EditorActionBar {
-    SAVE_TOOLBAR,
-    LABEL_TOOLBAR
+    CREATE_LABEL_TOOLBAR,
+    LABEL_CHANGE_SIZE_TOOLBAR
 }

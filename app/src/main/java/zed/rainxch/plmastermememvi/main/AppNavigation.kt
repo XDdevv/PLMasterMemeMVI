@@ -11,6 +11,7 @@ import zed.rainxch.plmastermememvi.core.domain.model.Template
 import zed.rainxch.plmastermememvi.core.presentation.navigation.NavGraph
 import zed.rainxch.plmastermememvi.core.presentation.navigation.SerializableNavType
 import zed.rainxch.plmastermememvi.editor.presentation.EditorScreen
+import zed.rainxch.plmastermememvi.editor.presentation.EditorScreenRoot
 import zed.rainxch.plmastermememvi.home.presentation.HomeScreen
 import kotlin.reflect.typeOf
 
@@ -37,9 +38,8 @@ fun AppNavigation(
             )
         ) { backStackEntry ->
             val args = backStackEntry.toRoute<NavGraph.EditorScreen>()
-            EditorScreen(
+            EditorScreenRoot(
                 onBack = { navController.popBackStack() },
-                modifier = Modifier,
                 template = args.template
             )
         }
